@@ -95,7 +95,8 @@ def main():
         url_base = args.url + "/service/siesta/rest/beta"
 
     session = requests.Session()
-    session.auth = (str(args.user).strip(), str(args.passwd).strip())
+    if args.user:
+        session.auth = (str(args.user).strip(), str(args.passwd).strip())
 
     # Get a list of all images in the repo
     all_images = get_all_images(session, args.REPO, url_base)
